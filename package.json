@@ -1,0 +1,17 @@
+{
+  "name": "walter-lab",
+  "version": "0.1.0",
+  "description": "Laboratorio de teleoperación: operador web + Walter falso + señalización WebRTC",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Walter falso</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Walter falso <span class="hint">(simula el robot)</span></h1>
+    <span id="st-signal" class="badge" data-state="wait">señalización…</span>
+    <span id="st-rtc" class="badge" data-state="wait">WebRTC: sin conexión</span>
+    <span id="safety" class="badge" data-state="wait">Sin heartbeat</span>
+    <span class="spacer"></span>
+    <a href="operator.html" target="_blank">Abrir operador</a>
+  </header>
+
+  <main>
+    <div class="grid">
+      <section class="card">
+        <h2>Cámara del robot</h2>
+        <video id="preview" autoplay muted playsinline></video>
+        <canvas id="pattern" class="pattern" width="640" height="360" hidden></canvas>
+        <div class="row">
+          <label for="source">Fuente de video</label>
+          <select id="source">
+            <option value="pattern">Patrón de prueba (con reloj)</option>
+            <option value="webcam">Webcam</option>
+          </select>
+        </div>
+        <p class="hint">Esto es lo que el robot transmite al operador por WebRTC.</p>
+      </section>
+
+      <section class="card">
+        <h2>Posición del robot (mapa simulado)</h2>
+        <canvas id="map" class="map" width="480" height="300"></canvas>
+        <p class="hint">Vista desde arriba. El mapa sigue al robot; la línea amarilla es su recorrido.</p>
+      </section>
+
+      <section class="card">
+        <h2>Estado y telemetría</h2>
+        <div class="metrics">
+          <div class="metric"><span class="label">Posición x</span><span class="value" id="v-x">0</span><span class="unit">m</span></div>
+          <div class="metric"><span class="label">Posición y</span><span class="value" id="v-y">0</span><span class="unit">m</span></div>
+          <div class="metric"><span class="label">Velocidad</span><span class="value" id="v-vx">0</span><span class="unit">m/s</span></div>
+          <div class="metric"><span class="label">Giro</span><span class="value" id="v-wz">0</span><span class="unit">rad/s</span></div>
+          <div class="metric" id="temp-l" data-level="ok"><span class="label">Motor izquierdo</span><span class="value" id="v-temp-l">25</span><span class="unit">°C</span></div>
+          <div class="metric" id="temp-r" data-level="ok"><span class="label">Motor derecho</span><span class="value" id="v-temp-r">25</span><span class="unit">°C</span></div>
+          <div class="metric"><span class="label">Órdenes viejas descartadas</span><span class="value" id="v-stale">0</span></div>
+        </div>
+        <p class="hint">Última orden recibida: <span id="last-cmd">ninguna</span></p>
+      </section>
+
+      <section class="card">
+        <h2>Bitácora</h2>
+        <ul id="log" class="log"></ul>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="js/robot.js"></script>
+</body>
+</html>
